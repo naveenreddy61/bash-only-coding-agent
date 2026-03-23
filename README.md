@@ -21,7 +21,7 @@ uv sync
 ## Run
 
 ```bash
-uv run python main.py
+uv run main.py
 ```
 
 ## Tags
@@ -36,3 +36,4 @@ git checkout v1-simple-call
 |-----|-------------|
 | `v1-simple-call` | Minimal LiteLLM call to Gemini |
 | `v2-dspy-predict` | Same call using DSPy Signature + Predict |
+| `v3-react-bash-tool` | ReAct agent with a bash tool via DSPy |
