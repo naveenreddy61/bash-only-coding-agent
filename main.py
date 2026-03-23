@@ -1,6 +1,12 @@
-def main():
-    print("Hello from bash-only-coding-agent!")
+"""Step 1: Simple LLM call using LiteLLM to route to Gemini."""
 
+import litellm
 
-if __name__ == "__main__":
-    main()
+MODEL = "gemini/gemini-3-flash-preview"
+
+response = litellm.completion(
+    model=MODEL,
+    messages=[{"role": "user", "content": "Say hello in one sentence."}],
+)
+
+print(response.choices[0].message.content)
