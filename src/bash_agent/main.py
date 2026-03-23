@@ -11,13 +11,16 @@ DSPy's ReAct module handles the loop for us (we'll build our own in the next ste
 """
 
 import subprocess
+import sys
 
 import dspy
+from rich.console import Console
+from rich.markdown import Markdown
+from rich.panel import Panel
 
 # --- Configuration ---
 
 MODEL = "gemini/gemini-3-flash-preview"
-REQUEST = "What files are in the current directory? Give a brief description of each."
 MAX_ITERS = 5  # max reasoning/acting cycles before the agent must answer
 
 
@@ -65,5 +68,19 @@ agent = dspy.ReAct(
     max_iters=MAX_ITERS,
 )
 
-result = agent(request=REQUEST)
-print(result.response)
+
+# --- CLI Entry Point ---
+
+def main():
+    console = Console()
+
+    if len(sys.argv) < 2:
+        console.print("[red]Usage:[/red] bash-agent \"your request here\"")
+        sys.exit(1)
+
+    request = " ".join(sys.argv[1:])
+    console.print(Panel(request, title="Request", border_style="blue"))
+
+    result = agent(request=request)
+
+    console.print(Panel(Markdown(result.response), title="Response", border_style="green"))

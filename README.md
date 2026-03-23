@@ -14,14 +14,14 @@ cd bash-only-coding-agent
 # create a .env file with your API key
 echo "GEMINI_API_KEY=your-key-here" > .env
 
-# install dependencies (requires uv)
-uv sync
+# install as editable (requires uv)
+uv pip install -e .
 ```
 
 ## Run
 
 ```bash
-uv run main.py
+bash-agent "your request here"
 ```
 
 ## Tags
@@ -37,3 +37,4 @@ git checkout v1-simple-call
 | `v1-simple-call` | Minimal LiteLLM call to Gemini |
 | `v2-dspy-predict` | Same call using DSPy Signature + Predict |
 | `v3-react-bash-tool` | ReAct agent with a bash tool via DSPy |
+| `v4-cli-agent` | Installable CLI tool (`bash-agent`) with rich output |
